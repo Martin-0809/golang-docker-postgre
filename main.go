@@ -25,10 +25,8 @@ const (
 
 func main() {
     // 連接DB
-    db, err := sql.Open(
-        "postgres",
-        fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", HOST, USER, PASSWORD, DATABASE),
-    )
+    // ✅ 一目了然，絕對不會代錯欄位
+db, err := sql.Open("postgres", "host=db user=user password=mysecretpassword dbname=postgres sslmode=disable")
 
     dbConnected := false // 💡 設一個貼心小貼紙，記錄到底有沒有連上資料庫
 
