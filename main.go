@@ -97,5 +97,5 @@ if port == "" {
 // Hello Render
 // 啟動 http server
 fmt.Println("Server is running on :" + port)
-log.Fatal(http.ListenAndServe(":" + port, nil))
+log.Fatal(http.ListenAndServe("0.0.0.0:" + port, nil))
 }
