@@ -29,13 +29,17 @@ func main() {
 		"postgres",
 		fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", HOST, USER, PASSWORD, DATABASE),
 	)
-	if err != nil {
-		panic(err)
-	}
-	// 檢查連接是否成功
-	if err = db.Ping(); err != nil {
-		panic(err)
-	}
+	// ✅ 修改後的安全版
+if err != nil {
+    fmt.Println(, err)
+} else {
+    // 只有當 sql.Open 沒失敗時，才去 Ping 看看
+    if err = db.Ping(); err != nil {
+        fmt.Println(, err)
+    } else {
+        fmt.Println("Successfully created connection to database")
+    }
+}
 	fmt.Println("Successfully created connection to database")
 	// === 自動建立資料表 ===
 _, err = db.Exec(`
