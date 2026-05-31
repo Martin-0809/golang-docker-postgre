@@ -89,7 +89,13 @@ if err != nil {
 		}
 	})
 
-	// 啟動 http server
-	fmt.Println("Server is running on :5000")
-	log.Fatal(http.ListenAndServe(":5000", nil))
+	// 💡 自動動態偵測雲端主機分配的 Port，找不到就預設用 5000
+port := os.Getenv("PORT")
+if port == "" {
+    port = "5000"
+}
+
+// 啟動 http server
+fmt.Println("Server is running on :" + port)
+log.Fatal(http.ListenAndServe(":" + port, nil))
 }
